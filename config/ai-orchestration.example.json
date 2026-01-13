@@ -1,0 +1,55 @@
+{
+  "version": "1.0",
+  "server": {
+    "name": "ai-orchestration-mcp",
+    "version": "2.0.0",
+    "logLevel": "info",
+    "logFile": "./logs/ai-orchestration.log",
+    "historyEnabled": true,
+    "historyFile": "./logs/history.jsonl",
+    "historyMaxEntries": 1000
+  },
+  "providers": {
+    "ollama": {
+      "enabled": true,
+      "baseUrl": "http://localhost:11434",
+      "timeout": 120000,
+      "models": {
+        "coder": "qwen2.5-coder:7b",
+        "general": "qwen2.5:7b"
+      }
+    },
+    "gemini": {
+      "enabled": false,
+      "apiKey": "${GEMINI_API_KEY}",
+      "defaultModel": "gemini-2.0-flash-exp",
+      "timeout": 60000
+    },
+    "openai": {
+      "enabled": false,
+      "apiKey": "${OPENAI_API_KEY}",
+      "defaultModel": "gpt-4o-mini",
+      "timeout": 60000
+    },
+    "anthropic": {
+      "enabled": false,
+      "apiKey": "${ANTHROPIC_API_KEY}",
+      "defaultModel": "claude-3-5-haiku-20241022",
+      "timeout": 60000
+    },
+    "llamaCpp": {
+      "enabled": false,
+      "baseUrl": "http://localhost:8080",
+      "timeout": 120000
+    }
+  },
+  "security": {
+    "allowShellExecution": false,
+    "maxPromptLength": 100000,
+    "maxResponseLength": 500000,
+    "rateLimiting": {
+      "enabled": false,
+      "maxRequestsPerMinute": 60
+    }
+  }
+}

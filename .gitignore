@@ -1,0 +1,58 @@
+# Dependencies
+node_modules/
+package-lock.json
+
+# Build output
+dist/
+*.tsbuildinfo
+*.js.map
+
+# Configuration (secrets)
+config/ai-orchestration.json
+.env
+.env.local
+.env.*.local
+
+# Logs
+*.log
+logs/
+history.jsonl
+*.history.jsonl
+
+# Testing
+coverage/
+.nyc_output/
+*.lcov
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*.swn
+.DS_Store
+*.sublime-*
+
+# MCP (local configuration)
+.mcp.json
+
+# Docker
+.env
+docker-compose.override.yml
+
+# OS
+Thumbs.db
+.Spotlight-V100
+.Trashes
+
+# Temporary files
+*.tmp
+*.temp
+.cache/
+tmp/
+
+# Runtime
+pids/
+*.pid
+*.seed
+*.pid.lock

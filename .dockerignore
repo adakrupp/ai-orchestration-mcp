@@ -1,0 +1,60 @@
+# Dependencies
+node_modules/
+npm-debug.log*
+package-lock.json
+
+# Build output (will be rebuilt in container)
+dist/
+*.tsbuildinfo
+
+# Configuration (will be mounted or set via env)
+config/ai-orchestration.json
+.env
+.env.*
+
+# Logs
+logs/
+*.log
+history.jsonl
+
+# Testing
+coverage/
+tests/
+test-*.js
+*.test.ts
+*.spec.ts
+
+# Documentation
+docs/
+*.md
+!README.md
+
+# Git
+.git/
+.gitignore
+.github/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Docker
+Dockerfile*
+docker-compose*.yml
+.dockerignore
+
+# CI/CD
+.github/
+
+# MCP local config
+.mcp.json
+
+# Other
+tmp/
+.cache/

@@ -1,0 +1,115 @@
+version: '3.8'
+
+services:
+  # AI Orchestration MCP Server
+  ai-orchestration-mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: ai-orchestration-mcp
+    restart: unless-stopped
+
+    # Environment variables (override in .env file)
+    environment:
+      # API Keys (use secrets in production!)
+      - OPENAI_API_KEY=${OPENAI_API_KEY:-}
+      - ANTHROPIC_API_KEY=${ANTHROPIC_API_KEY:-}
+      - GEMINI_API_KEY=${GEMINI_API_KEY:-}
+
+      # Configuration file path (optional)
+      - AI_ORCHESTRATION_CONFIG=/app/config/ai-orchestration.json
+
+      # Node environment
+      - NODE_ENV=${NODE_ENV:-production}
+
+    # Volume mounts
+    volumes:
+      # Configuration file
+      - ./config/ai-orchestration.json:/app/config/ai-orchestration.json:ro
+
+      # Logs directory (persistent)
+      - ./logs:/app/logs
+
+      # History file (persistent)
+      - ai-orchestration-history:/app/history
+
+    # Stdin/stdout for MCP protocol
+    stdin_open: true
+    tty: false
+
+    # Logging
+    logging:
+      driver: "json-file"
+      options:
+        max-size: "10m"
+        max-file: "3"
+
+    # Connect to Ollama if enabled
+    networks:
+      - ai-orchestration-net
+
+    # Depends on Ollama if using it
+    depends_on:
+      ollama:
+        condition: service_healthy
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "node", "-e", "process.exit(0)"]
+      interval: 30s
+      timeout: 3s
+      retries: 3
+      start_period: 5s
+
+  # Ollama Service (Optional - comment out if not needed)
+  ollama:
+    image: ollama/ollama:latest
+    container_name: ai-orchestration-ollama
+    restart: unless-stopped
+
+    # Use GPU if available
+    # Uncomment for NVIDIA GPU support
+    # deploy:
+    #   resources:
+    #     reservations:
+    #       devices:
+    #         - driver: nvidia
+    #           count: 1
+    #           capabilities: [gpu]
+
+    # Ports
+    ports:
+      - "11434:11434"
+
+    # Volume for models
+    volumes:
+      - ollama-models:/root/.ollama
+
+    # Network
+    networks:
+      - ai-orchestration-net
+
+    # Health check
+    healthcheck:
+      test: ["CMD", "ollama", "list"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 30s
+
+    # Environment
+    environment:
+      - OLLAMA_HOST=0.0.0.0:11434
+
+networks:
+  ai-orchestration-net:
+    driver: bridge
+
+volumes:
+  # Persistent storage for Ollama models
+  ollama-models:
+    driver: local
+
+  # Persistent storage for request history
+  ai-orchestration-history:
+    driver: local
