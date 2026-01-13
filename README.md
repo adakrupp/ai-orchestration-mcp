@@ -6,6 +6,9 @@ Production-grade Model Context Protocol (MCP) server for orchestrating multiple 
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.3-blue)](https://www.typescriptlang.org/)
 [![Node.js](https://img.shields.io/badge/Node.js-20+-green)](https://nodejs.org/)
 [![Docker](https://img.shields.io/badge/Docker-Ready-blue)](https://www.docker.com/)
+[![Docker Hub](https://img.shields.io/docker/v/adakrupp/ai-orchestration-mcp?label=Docker%20Hub)](https://hub.docker.com/r/adakrupp/ai-orchestration-mcp)
+[![Docker Image Size](https://img.shields.io/docker/image-size/adakrupp/ai-orchestration-mcp/latest)](https://hub.docker.com/r/adakrupp/ai-orchestration-mcp)
+[![Docker Pulls](https://img.shields.io/docker/pulls/adakrupp/ai-orchestration-mcp)](https://hub.docker.com/r/adakrupp/ai-orchestration-mcp)
 
 ## ✨ Features
 
@@ -21,13 +24,16 @@ Production-grade Model Context Protocol (MCP) server for orchestrating multiple 
 
 ## 🚀 Quick Start
 
-### Option 1: Docker (Recommended)
+### Option 1: Docker Hub (Easiest)
 
 ```bash
-# One-command setup
-./docker-setup.sh
+# Pull the image
+docker pull adakrupp/ai-orchestration-mcp:latest
 
-# Start the server
+# Download docker-compose.yml
+curl -O https://raw.githubusercontent.com/adakrupp/ai-orchestration-mcp/main/docker-compose.yml
+
+# Start services
 docker compose up -d
 
 # View logs
@@ -36,13 +42,27 @@ docker compose logs -f ai-orchestration-mcp
 
 **That's it!** The server is now running with Ollama and ready to use with Claude Code.
 
+### Option 2: Build from Source
+
+```bash
+# Clone repository
+git clone https://github.com/adakrupp/ai-orchestration-mcp.git
+cd ai-orchestration-mcp
+
+# One-command setup
+./docker-setup.sh
+
+# View logs
+docker compose logs -f ai-orchestration-mcp
+```
+
 👉 See [DOCKER.md](DOCKER.md) for complete Docker documentation.
 
-### Option 2: Local Installation
+### Option 3: Local Installation
 
 ```bash
 # Clone and install
-git clone https://github.com/yourusername/ai-orchestration-mcp.git
+git clone https://github.com/adakrupp/ai-orchestration-mcp.git
 cd ai-orchestration-mcp
 npm install
 
@@ -83,9 +103,17 @@ npm test
 
 ### Installation Methods
 
-#### Docker (Recommended for Production)
+#### Docker Hub (Recommended)
+
+```bash
+docker pull adakrupp/ai-orchestration-mcp:latest
+```
 
 See [DOCKER.md](DOCKER.md) for complete Docker deployment guide.
+
+#### Docker Build from Source
+
+See [DOCKER.md](DOCKER.md) for building from source.
 
 #### NPM Installation
 
@@ -482,9 +510,9 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 ## 💬 Support
 
-- **Issues**: [GitHub Issues](https://github.com/yourusername/ai-orchestration-mcp/issues)
-- **Discussions**: [GitHub Discussions](https://github.com/yourusername/ai-orchestration-mcp/discussions)
-- **Documentation**: [Full Docs](https://github.com/yourusername/ai-orchestration-mcp/tree/main/docs)
+- **Issues**: [GitHub Issues](https://github.com/adakrupp/ai-orchestration-mcp/issues)
+- **Discussions**: [GitHub Discussions](https://github.com/adakrupp/ai-orchestration-mcp/discussions)
+- **Documentation**: [Full Docs](https://github.com/adakrupp/ai-orchestration-mcp/tree/main/docs)
 
 ---
 

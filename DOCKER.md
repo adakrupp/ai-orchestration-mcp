@@ -2,13 +2,57 @@
 
 This guide explains how to deploy the AI Orchestration MCP Server using Docker.
 
+## 🐳 Docker Hub
+
+The easiest way to get started is to pull the pre-built image from Docker Hub:
+
+```bash
+docker pull adakrupp/ai-orchestration-mcp:latest
+```
+
+**Available Tags**:
+- `latest` - Latest stable version
+- `2.0.0` - Specific version (v2.0.0)
+- `2.0` - Major.minor version
+- `2` - Major version
+
+**Docker Hub Repository**: [adakrupp/ai-orchestration-mcp](https://hub.docker.com/r/adakrupp/ai-orchestration-mcp)
+
+---
+
 ## Quick Start
 
-### 1. One-Command Setup
+### Option 1: Docker Hub (Fastest)
+
+```bash
+# Pull image
+docker pull adakrupp/ai-orchestration-mcp:latest
+
+# Download docker-compose.yml
+curl -O https://raw.githubusercontent.com/adakrupp/ai-orchestration-mcp/main/docker-compose.yml
+
+# Modify docker-compose.yml to use Docker Hub image
+# (Uncomment the 'image:' line and comment out the 'build:' section)
+
+# Start services
+docker compose up -d
+
+# View logs
+docker compose logs -f ai-orchestration-mcp
+```
+
+### Option 2: Build from Source
+
+#### 1. One-Command Setup
 
 Run the setup script to build images, start services, and pull Ollama models:
 
 ```bash
+# Clone repository
+git clone https://github.com/adakrupp/ai-orchestration-mcp.git
+cd ai-orchestration-mcp
+
+# Run setup script
 ./docker-setup.sh
 ```
 
@@ -18,19 +62,19 @@ This will:
 - ✅ Pull required models (qwen2.5:7b, qwen2.5-coder:7b)
 - ✅ Create necessary directories and config files
 
-### 2. Start the MCP Server
+#### 2. Start the MCP Server
 
 ```bash
 docker compose up -d ai-orchestration-mcp
 ```
 
-### 3. View Logs
+#### 3. View Logs
 
 ```bash
 docker compose logs -f ai-orchestration-mcp
 ```
 
-### 4. Stop Services
+#### 4. Stop Services
 
 ```bash
 docker compose down
@@ -155,6 +199,35 @@ The config file at `config/ai-orchestration.json` is mounted into the container.
 - Ollama URL: `http://ollama:11434` (service name)
 - Log paths: `/app/logs/...` (container paths)
 - History path: `/app/history/...` (persistent volume)
+
+---
+
+## Using Pre-built Image
+
+To use the Docker Hub image instead of building locally, modify `docker-compose.yml`:
+
+```yaml
+services:
+  # AI Orchestration MCP Server
+  ai-orchestration-mcp:
+    # Option 1: Use pre-built image from Docker Hub
+    image: adakrupp/ai-orchestration-mcp:latest
+
+    # Option 2: Build from source (comment out when using Docker Hub image)
+    # build:
+    #   context: .
+    #   dockerfile: Dockerfile
+
+    container_name: ai-orchestration-mcp
+    restart: unless-stopped
+    # ... rest of configuration
+```
+
+After modifying, start the services:
+
+```bash
+docker compose up -d
+```
 
 ---
 

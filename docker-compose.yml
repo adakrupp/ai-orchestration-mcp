@@ -3,9 +3,14 @@ version: '3.8'
 services:
   # AI Orchestration MCP Server
   ai-orchestration-mcp:
+    # Option 1: Use pre-built image from Docker Hub (uncomment to use)
+    # image: adakrupp/ai-orchestration-mcp:latest
+
+    # Option 2: Build from source (comment out if using Docker Hub image)
     build:
       context: .
       dockerfile: Dockerfile
+
     container_name: ai-orchestration-mcp
     restart: unless-stopped
 
