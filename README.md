@@ -454,7 +454,7 @@ npm run test:coverage
 
 ### Reporting Vulnerabilities
 
-Please report security vulnerabilities to [security@example.com](mailto:security@example.com).
+Please report security vulnerabilities via [GitHub Security Advisories](https://github.com/adakrupp/ai-orchestration-mcp/security/advisories/new) or by opening a private issue.
 
 ### Security Best Practices
 
@@ -476,9 +476,9 @@ npm audit fix
 
 ## 🤝 Contributing
 
-Contributions are welcome! Please see [CONTRIBUTING.md](CONTRIBUTING.md) for guidelines.
+Contributions are welcome!
 
-### Quick Contribution Guide
+### Contribution Guide
 
 1. Fork the repository
 2. Create a feature branch (`git checkout -b feature/amazing-feature`)
@@ -500,13 +500,10 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 - [OpenAI](https://openai.com/), [Anthropic](https://anthropic.com/), [Google](https://ai.google.dev/) for their APIs
 - All contributors to this project
 
-## 📚 Additional Documentation
+## 📚 Documentation
 
-- [Docker Deployment Guide](DOCKER.md)
-- [Configuration Reference](CONFIGURATION.md) *(coming soon)*
-- [Provider Documentation](PROVIDERS.md) *(coming soon)*
-- [Development Guide](DEVELOPMENT.md) *(coming soon)*
-- [Security Policy](SECURITY.md) *(coming soon)*
+- [Docker Deployment Guide](DOCKER.md) - Complete guide for Docker deployment
+- [Example Configuration](config/ai-orchestration.example.json) - Configuration file reference
 
 ## 💬 Support
 
